@@ -6,7 +6,7 @@
 /*   By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 11:08:11 by nkuydin           #+#    #+#             */
-/*   Updated: 2025/11/13 22:17:14 by nkuydin          ###   ########.fr       */
+/*   Updated: 2025/11/22 16:00:17 by nkuydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	rrb(t_stack *arr);
 void	rrr(t_stack *arr);
 
 // small sort
+void	small_sort(t_stack *arr);
 void	sort_three(t_stack *arr);
 void	sort_four(t_stack *arr);
 void	sort_five(t_stack *arr);

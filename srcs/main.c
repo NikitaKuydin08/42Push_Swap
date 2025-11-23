@@ -6,7 +6,7 @@
 /*   By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:53:26 by nkuydin           #+#    #+#             */
-/*   Updated: 2025/11/13 22:17:11 by nkuydin          ###   ########.fr       */
+/*   Updated: 2025/11/23 07:25:54 by nkuydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,22 @@
 int	main(int argc, char **argv)
 {
 	t_stack	*arr;
-	int	i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	validate_args(argc, argv);
 	arr = malloc(sizeof(t_stack));
 	if (!arr)
 		exit(1);
 	init_stacks(argc, argv, arr);
 	parse_args(argc, argv, arr);
-	if (arr->size_a == 2)
-		sa(arr);
-	else if (arr->size_a == 3)
-		sort_three(arr);
-	else if (arr->size_a == 4)
-		sort_four(arr);
-	else if (arr->size_a == 5)
-		sort_five(arr);
-	while (i < arr->size_a)
-	{
-		printf("%i ", arr->a[i]);
-		i++;
-	}
+	if (arr->size_a < 6)
+		small_sort(arr);
+	// while (i < arr->size_a)
+	// {
+	// 	printf("%d ", arr->a[i]);
+	// 	i++;
+	// }
 	exit_if_sorted_or_has_duplicate(arr);
 	free_exit(arr, "Error\n");
 	return (0);
