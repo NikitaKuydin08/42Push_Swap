@@ -6,7 +6,7 @@
 /*   By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 11:08:11 by nkuydin           #+#    #+#             */
-/*   Updated: 2025/11/25 19:31:15 by nkuydin          ###   ########.fr       */
+/*   Updated: 2025/11/26 15:04:02 by nkuydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	radix_sort(t_stack *arr);
 
 // validation
 void	validate_args(int argc, char **argv);
-void	free_exit(t_stack *arr, int *c, char *msg);
+void	free_exit(t_stack *arr, int *c, char *msg, int ex);
 void	exit_if_sorted_or_has_duplicate(t_stack *arr, int *c);
 int		is_sorted(t_stack *arr);
 

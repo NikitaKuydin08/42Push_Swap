@@ -6,7 +6,7 @@
 /*   By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:23:37 by nkuydin           #+#    #+#             */
-/*   Updated: 2025/11/25 19:40:53 by nkuydin          ###   ########.fr       */
+/*   Updated: 2025/11/26 15:03:55 by nkuydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	find_index(t_stack *arr, int *c)
 	j = 0;
 	new = malloc(sizeof(int) * arr->size_a);
 	if (!new)
-		return ;
+		free_exit(arr, c, "", 1);
 	while (j < arr->size_a)
 	{
 		i = 0;
@@ -55,13 +55,9 @@ void	find_index(t_stack *arr, int *c)
 		new[j] = i;
 		j++;
 	}
-	j = 0;
-	while (j < arr->size_a)
-	{
+	j = arr->size_a;
+	while (j--)
 		arr->a[j] = new[j];
-		j++;
-	}
-	free(c);
 	free(new);
 }
 
