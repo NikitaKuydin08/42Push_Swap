@@ -6,7 +6,7 @@
 /*   By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 12:01:29 by nkuydin           #+#    #+#             */
-/*   Updated: 2025/11/25 18:05:20 by nkuydin          ###   ########.fr       */
+/*   Updated: 2025/11/25 13:24:06 by nkuydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,10 @@ void	sort_four(t_stack *arr)
 	{
 		while (pos_of_min > 0)
 		{
-			rra(arr);
 			if (pos_of_min == arr->size_a - 1)
 				pos_of_min = 0;
-			else
-				pos_of_min++;
+			rra(arr);
+			pos_of_min--;
 		}
 	}
 	pb(arr);
@@ -113,13 +112,12 @@ void	sort_five(t_stack *arr)
 	}
 	else
 	{
-		while (pos_of_min)
+		while (pos_of_min > 0)
 		{
-			rra(arr);
 			if (pos_of_min == arr->size_a - 1)
 				pos_of_min = 0;
-			else
-				pos_of_min++;
+			rra(arr);
+			pos_of_min--;
 		}
 	}
 	pb(arr);

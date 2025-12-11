@@ -6,7 +6,7 @@
 /*   By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:14:25 by nkuydin           #+#    #+#             */
-/*   Updated: 2025/11/26 15:13:05 by nkuydin          ###   ########.fr       */
+/*   Updated: 2025/11/25 13:24:07 by nkuydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,70 +18,57 @@
 
 #include "../includes/push_swap.h"
 
-int		ps_atol(char *str, long long *out);
-void	free_temp(t_stack *arr, char **temp, int *c);
+int	ps_atol(char *str, t_stack *arr);
 
 void	parse_args(int argc, char **argv, t_stack *arr, int *c)
 {
-	char		**temp;
-	char		*joined;
-	int			j;
-	int			i;
-	long long	value;
+	char	**temp;
+	char	*joined;
+	int		count;
+	int		j;
+	int		i;
 
+	count = 0;
 	j = 0;
 	i = 0;
 	joined = join_args(argc, argv);
-	if (!joined)
-		free_exit(arr, c, "Error\n", 1);
 	temp = ft_split(joined, ' ');
 	free(joined);
-	if (!temp)
-		free_exit(arr, c, "Error\n", 1);
-	while (temp[i])
+	while (temp[count])
+		count++;
+	while (i < count)
 	{
-		if (!ps_atol(temp[i], &value))
-			free_temp(arr, temp, c);
-		c[j] = (int)value;
-		arr->a[j] = (int)value;
+		c[j] = ps_atol(temp[i], arr);
+		arr->a[j] = ps_atol(temp[i], arr);
+		free(temp[i]);
 		j++;
 		i++;
 	}
-	free_split(temp);
+	free(temp);
+	exit_if_sorted_or_has_duplicate(arr);
 }
 
 char	*join_args(int argc, char **argv)
 {
 	char	*joined;
-	char	*temp;
 	int		i;
 
 	i = 1;
 	joined = ft_strdup("");
 	while (i < argc)
 	{
-		temp = joined;
-		joined = ft_strjoin(temp, argv[i]);
-		if (!joined)
-			return (free(temp), NULL);
-		free(temp);
+		joined = ft_strjoin(joined, argv[i]);
 		if (i != argc - 1)
-		{
-			temp = joined;
-			joined = ft_strjoin(temp, " ");
-			if (!joined)
-				return (free(temp), NULL);
-			free(temp);
-		}
+			joined = ft_strjoin(joined, " ");
 		i++;
 	}
 	return (joined);
 }
 
-int	ps_atol(char *str, long long *out)
+int	ps_atol(char *str, t_stack *arr)
 {
 	int			i;
-	int			sign;
+	long		sign;
 	long long	result;
 
 	i = 0;
@@ -93,17 +80,12 @@ int	ps_atol(char *str, long long *out)
 			sign = -1;
 		i++;
 	}
+	if (!str[i])
+		free_exit(arr, "Error\n");
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 		result = result * 10 + (str[i++] - '0');
 	result *= sign;
 	if (result > INT_MAX || result < INT_MIN)
-		return (0);
-	*out = result;
-	return (1);
-}
-
-void	free_temp(t_stack *arr, char **temp, int *c)
-{
-	free_split(temp);
-	free_exit(arr, c, "Error\n", 1);
+		free_exit(arr, "Error\n");
+	return (result);
 }

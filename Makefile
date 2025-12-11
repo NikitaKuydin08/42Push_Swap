@@ -6,7 +6,7 @@
 #    By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/30 23:21:57 by nkuydin           #+#    #+#              #
-#    Updated: 2025/11/26 15:31:33 by nkuydin          ###   ########.fr        #
+#    Updated: 2025/11/25 10:18:59 by nkuydin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS = srcs/operations/push.c \
 		srcs/small_sort.c \
 		srcs/sort_utils.c \
 		srcs/validation.c \
-		srcs/radix_sort.c
+		srcs/large_sort.c
 
 OBJS = $(patsubst srcs/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 

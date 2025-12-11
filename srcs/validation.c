@@ -6,13 +6,13 @@
 /*   By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:07:54 by nkuydin           #+#    #+#             */
-/*   Updated: 2025/11/26 15:17:37 by nkuydin          ###   ########.fr       */
+/*   Updated: 2025/11/25 08:34:52 by nkuydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	free_exit(t_stack *arr, int *c, char *msg, int ex)
+void	free_exit(t_stack *arr, char *msg)
 {
 	if (msg)
 		write(2, msg, ft_strlen(msg));
@@ -24,9 +24,7 @@ void	free_exit(t_stack *arr, int *c, char *msg, int ex)
 			free(arr->b);
 		free(arr);
 	}
-	if (c)
-		free(c);
-	exit(ex);
+	exit(1);
 }
 
 void	validate_args(int argc, char **argv)
@@ -41,17 +39,14 @@ void	validate_args(int argc, char **argv)
 	{
 		j = 0;
 		if (!(argv[i][0]) || (argv[i][0] && argv[i][0] == '\0'))
-			free_exit(NULL, NULL, "Error\n", 1);
+			free_exit(NULL, "Error\n");
 		while (argv[i][j])
 		{
 			if ((!ft_isdigit(argv[i][j]) && argv[i][j] != ' '
 			&& argv[i][j] != '+' && argv[i][j] != '-')
 			|| (argv[i][j] == '+' && !ft_isdigit(argv[i][j + 1]))
-			|| (argv[i][j] == '-' && !ft_isdigit(argv[i][j + 1]))
-			|| (ft_isdigit(argv[i][j]) && argv[i][j + 1] == '+')
-			|| (ft_isdigit(argv[i][j]) && argv[i][j + 1] == '-')
-			|| (argv[i][j] == ' ' && argv[i][j + 1] == '\0'))
-				free_exit(NULL, NULL, "Error\n", 1);
+			|| (argv[i][j] == '-' && !ft_isdigit(argv[i][j + 1])))
+				free_exit(NULL, "Error\n");
 			j++;
 		}
 		i++;
@@ -72,7 +67,7 @@ int	is_sorted(t_stack *arr)
 	return (1);
 }
 
-void	exit_if_sorted_or_has_duplicate(t_stack *arr, int *c)
+void	exit_if_sorted_or_has_duplicate(t_stack *arr)
 {
 	int	i;
 	int	j;
@@ -85,11 +80,11 @@ void	exit_if_sorted_or_has_duplicate(t_stack *arr, int *c)
 		while (j < arr->size_a)
 		{
 			if (arr->a[i] == arr->a[j])
-				free_exit(arr, c, "Error\n", 1);
+				free_exit(arr, "Error\n");
 			j++;
 		}
 		i++;
 	}
 	if (is_sorted(arr))
-		free_exit(arr, c, "", 1);
+		free_exit(arr, "");
 }

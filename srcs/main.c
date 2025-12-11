@@ -6,7 +6,7 @@
 /*   By: nkuydin <nkuydin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 14:53:26 by nkuydin           #+#    #+#             */
-/*   Updated: 2025/11/26 15:49:53 by nkuydin          ###   ########.fr       */
+/*   Updated: 2025/11/25 13:27:54 by nkuydin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ int	main(int argc, char **argv)
 	init_stacks(argc, argv, arr);
 	c = malloc(sizeof(int) * arr->size_a);
 	if (!c)
-		free_exit(arr, NULL, "Error\n", 1);
+		free_exit(arr, "Error\n");
 	parse_args(argc, argv, arr, c);
-	exit_if_sorted_or_has_duplicate(arr, c);
 	bubble_sort(c, arr->size_a);
 	find_index(arr, c);
 	if (arr->size_a < 6)
 		small_sort(arr);
 	else
 		radix_sort(arr);
-	free_exit(arr, c, "", 0);
+	// put_results(arr);
+	exit_if_sorted_or_has_duplicate(arr);
+	free_exit(arr, "Error\n");
 	return (0);
 }
 
@@ -68,8 +69,8 @@ void	init_stacks(int argc, char **argv, t_stack *arr)
 	}
 	arr->a = malloc(sizeof(int) * arr->size_a);
 	if (!arr->a)
-		free_exit(arr, NULL, "Error\n", 1);
+		free_exit(arr, "Error\n");
 	arr->b = malloc(sizeof(int) * arr->size_a);
 	if (!arr->b)
-		free_exit(arr, NULL, "Error\n", 1);
+		free_exit(arr, "Error\n");
 }
